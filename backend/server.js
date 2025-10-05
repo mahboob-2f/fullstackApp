@@ -40,7 +40,7 @@ app.get('/jokes',(req,res)=>{
 })
 
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 app.listen(port,()=>{
     console.log(`Serve at https://localhost:${port}`);
