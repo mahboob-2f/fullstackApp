@@ -1,10 +1,20 @@
 import { use } from 'react'
 import './App.css' 
 import { useState } from 'react'
+import axios from 'axios'
+import { useEffect } from 'react';
 
 function App() {
 
   const [jokes,setJokes]= useState([]);
+  useEffect(()=>{
+    axios.get('http://localhost:3000/jokes')
+    .then((response)=>{
+      setJokes(response.data)
+    }).catch((error)=>{
+      console.log(error);
+    })
+  },[])
 
   return (
     <>
