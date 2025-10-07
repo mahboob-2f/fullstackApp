@@ -1,34 +1,37 @@
 import { use } from 'react'
 import './App.css' 
-import { useState } from 'react'
+import { useState , useEffect } from 'react'
 import axios from 'axios'
-import { useEffect } from 'react';
+
 
 function App() {
 
   const [jokes,setJokes]= useState([]);
+  
   useEffect(()=>{
-    axios.get('http://localhost:3000/jokes')
+    axios.get('/api/jokes')
     .then((response)=>{
-      setJokes(response.data)
+      setJokes(response.data);
+      // console.log(response);
     }).catch((error)=>{
       console.log(error);
     })
   },[])
-
+ 
   return (
     <>
-      <p>hello ghost</p>
+      <h1>hello ghost</h1>
       <div>
-          <h1>Jokes: {jokes.length}</h1>
+          <h2>Jokes: {jokes.length}</h2>
           <div>
             {
-              jokes.map((joke)=>{
-                <div key={joke.id}>
+              jokes.map((joke)=>(
+                  <div key={joke.id}>
                   <h2>{joke.title}</h2>
                   <p>{joke.content}</p>
                 </div>
-              })
+                
+              ))
             }
           </div>
       </div>

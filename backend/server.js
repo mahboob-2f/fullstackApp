@@ -1,4 +1,6 @@
 import express from 'express'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const app = express();
 
@@ -8,7 +10,7 @@ app.get('/',(req,res)=>{
 
 //   get some jokes
 
-app.get('/jokes',(req,res)=>{
+app.get('/api/jokes',(req,res)=>{
     const jokes=[
         {
             id:1,
@@ -39,9 +41,14 @@ app.get('/jokes',(req,res)=>{
     res.send(jokes);
 })
 
+app.get("/ghost",(req,res)=>{
+    res.send("<h2 style='background-color:red; text-align:center;'>welcome ghost </h2>" )
+})
+
 
 const port = process.env.PORT || 3000;
 
 app.listen(port,()=>{
+    console.log(process.env.PORT);
     console.log(`Serve at https://localhost:${port}`);
 })
